@@ -24,14 +24,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private static final int streamType = AudioManager.STREAM_MUSIC;
     private boolean loaded;
     private float volume;
-    private int soundIdChosenSound;
+    private int chosenSoundId;
 
     //SENSOR VARIABLES
     private SensorManager senSensorManager;
     private Sensor senAccelerometer;
     private long lastUpdate = 0;
     private float last_x, last_y, last_z;
-    private static final int SHAKE_THRESHOLD = 300;
+    private static final int SHAKE_THRESHOLD = 500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     void LoadSoundFile() {
         //load sound file into SoundPool
-        this.soundIdChosenSound = this.soundPool.load(this, R.raw.whoo, 1);
+        this.chosenSoundId = this.soundPool.load(this, R.raw.whoo, 1);
     }
 
     void SensorSetup() {
