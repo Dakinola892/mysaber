@@ -3,7 +3,9 @@ package com.example.dakin.quicktest;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
 import android.view.LayoutInflater;
+
 import android.view.View;
 import android.webkit.URLUtil;
 import android.widget.Button;
@@ -14,7 +16,6 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.dakin.quicktest.R;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -35,35 +36,34 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_soundselector);
 
-        LayoutInflater layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.activity_soundselector, null);
+
+        RelativeLayout rLayout = (RelativeLayout) this.findViewById(R.id.relayout);
+        RadioGroup radiobuttons = (RadioGroup) this.findViewById(R.id.radiobuttons);
+        //LayoutInflater layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        //View view = layoutInflater.inflate(R.layout.activity_soundselector, null);
+
 
 
         for (int i = 0; i < numOfFile; i++) {
             TextView tv = new TextView(this);
-            Button pb = new Button(this);
+
             RadioButton rb = new RadioButton(this);
 
-            pb.setText("test");
-            RelativeLayout.LayoutParams rlp = new RelativeLayout.LayoutParams(
-                    RelativeLayout.LayoutParams.MATCH_PARENT,
-                    RelativeLayout.LayoutParams.MATCH_PARENT);
 
             RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
                     RelativeLayout.LayoutParams.WRAP_CONTENT,
                     RelativeLayout.LayoutParams.MATCH_PARENT);
 
-            RelativeLayout relayout = new RelativeLayout(this);
-            myLayout.addView(relayout, rlp);
-
-            relayout.addView(tv, 0, lp);
-
-            lp.addRule(RelativeLayout.ALIGN_PARENT_TOP);
-            lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-            relayout.addView(pb, 1, lp);
 
             lp.setMargins(0, 8, 0, 8);
-            radiobuttons.addView(rb, lp);
+            rb.setLayoutParams(lp);
+            radiobuttons.addView(rb);
+
+            lp.setMargins(24, 0, 0 ,0);
+            lp.addRule(RelativeLayout.ALIGN_BASELINE, rb.getId());
+            tv.setLayoutParams(lp);
+            tv.setText("test");
+            rLayout.addView(tv);
 
 
 
@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-
 
 
     public String[] getSaberSounds(){
