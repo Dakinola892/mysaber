@@ -3,6 +3,9 @@ package com.example.dakin.quicktest;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import android.view.LayoutInflater;
+
 import android.view.View;
 import android.webkit.URLUtil;
 import android.widget.Button;
@@ -12,6 +15,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -32,17 +36,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_soundselector);
 
+
         RelativeLayout rLayout = (RelativeLayout) this.findViewById(R.id.relayout);
         RadioGroup radiobuttons = (RadioGroup) this.findViewById(R.id.radiobuttons);
+        //LayoutInflater layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        //View view = layoutInflater.inflate(R.layout.activity_soundselector, null);
+
 
 
         for (int i = 0; i < numOfFile; i++) {
             TextView tv = new TextView(this);
+
             RadioButton rb = new RadioButton(this);
+
 
             RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
                     RelativeLayout.LayoutParams.WRAP_CONTENT,
                     RelativeLayout.LayoutParams.MATCH_PARENT);
+
 
             lp.setMargins(0, 8, 0, 8);
             rb.setLayoutParams(lp);
@@ -60,10 +71,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
         }
     }
+
 
     public String[] getSaberSounds(){
         return saberSoundFiles;
